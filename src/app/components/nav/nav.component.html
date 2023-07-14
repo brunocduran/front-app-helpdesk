@@ -1,0 +1,38 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+    <button (click)="drawer.toggle()" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>HelpDesk</span>
+</mat-toolbar>
+
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+        <!-- <img src="assets/img/side-image.svg" alt="Imagem de navegação"> -->
+        <mat-nav-list class="nav-list">
+            <a mat-list-item routerLink="home">
+                <mat-icon matListItemIcon>home</mat-icon>
+                <div>Home</div>
+            </a>
+            <a mat-list-item routerLink="tecnicos">
+                <mat-icon matListItemIcon>account_circle</mat-icon>
+                <div>Técnicos</div>
+            </a>
+            <a mat-list-item routerLink="/">
+                <mat-icon matListItemIcon>person</mat-icon>
+                <div>Clientes</div>
+            </a>
+            <a mat-list-item routerLink="/">
+                <mat-icon matListItemIcon>code</mat-icon>
+                <div>GitHub</div>
+            </a>
+            <a mat-list-item routerLink="/">
+                <mat-icon matListItemIcon>logout</mat-icon>
+                <div>Logout</div>
+            </a>
+        </mat-nav-list>
+    </mat-drawer>
+
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-container>
