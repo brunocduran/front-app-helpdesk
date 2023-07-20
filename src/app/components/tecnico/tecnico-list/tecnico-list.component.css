@@ -18,3 +18,11 @@ h1 {
   text-align: center;
   margin-bottom: 2rem;
 }
+
+.edit {
+  color: rgb(63 81 181);
+}
+
+.delete {
+  color: red;
+}

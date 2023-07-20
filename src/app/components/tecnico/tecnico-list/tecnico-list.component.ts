@@ -19,7 +19,7 @@ export class TecnicoListComponent {
 
   ELEMENT_DATA: Tecnico[] = []
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'acoes'];
+  displayedColumns: string[] = ['id', 'nome', 'cpf', 'email', 'edit', 'delete'];
   dataSource = new MatTableDataSource<Tecnico>(this.ELEMENT_DATA);
 
   ngOnInit(){
