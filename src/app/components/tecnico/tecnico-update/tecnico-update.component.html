@@ -4,9 +4,9 @@
         <h1 class="fullWidth">Atualizar Técnico</h1>
 
         <section class="section">
-            <mat-checkbox (click)="addPerfil(0)" class="margin" color="primary">Administrador</mat-checkbox>
-            <mat-checkbox (click)="addPerfil(1)" [checked]="true" class="margin" color="primary">Cliente</mat-checkbox>
-            <mat-checkbox (click)="addPerfil(2)" class="margin" color="primary">Técnico</mat-checkbox>
+            <mat-checkbox (click)="addPerfil(0)" [checked]="verificaPerfilAdmin(tecnico.perfis)" class="margin" color="primary">Administrador</mat-checkbox>
+            <mat-checkbox (click)="addPerfil(1)" [checked]="verificaPerfilCliente(tecnico.perfis)" class="margin" color="primary">Cliente</mat-checkbox>
+            <mat-checkbox (click)="addPerfil(2)" [checked]="verificaPerfilTecnico(tecnico.perfis)" [disabled]="true" class="margin" color="primary">Técnico</mat-checkbox>
         </section>
 
         <mat-form-field class="fullWidth" appearance="outline">

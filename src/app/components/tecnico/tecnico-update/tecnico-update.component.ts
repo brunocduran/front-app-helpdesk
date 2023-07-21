@@ -34,6 +34,8 @@ export class TecnicoUpdateComponent {
   email: FormControl = new FormControl(null, Validators.email);
   senha: FormControl = new FormControl(null, Validators.minLength(3));
 
+  perfilTemp: any[] = [];
+
   ngOnInit(): void {
     this.tecnico.id = this.route.snapshot.paramMap.get('id');
     this.findById();
@@ -41,8 +43,12 @@ export class TecnicoUpdateComponent {
 
   findById(): void {
     this.service.findById(this.tecnico.id).subscribe(resposta => {
+      //console.log(resposta.perfis);
+      this.armazenaPerfil(resposta.perfis);
       resposta.perfis = [];
       this.tecnico = resposta;
+      this.tecnico.perfis = this.perfilTemp;
+      //console.log(this.tecnico);
     })
   }
 
@@ -70,6 +76,53 @@ export class TecnicoUpdateComponent {
     }
     //console.log(this.tecnico.perfis);
   }
+
+  armazenaPerfil(perfil: any) {
+    this.perfilTemp = [];
+    for (const item of perfil) {
+      //console.log(item);
+      if (item == "ADMIN") {
+        this.perfilTemp.push(0);
+      }else if (item == "CLIENTE") {
+        this.perfilTemp.push(1);
+      }else if (item == "TECNICO") {
+        this.perfilTemp.push(2);
+      }
+    }
+    //console.log(this.perfilTemp);
+  }
+
+  verificaPerfilAdmin(perfil: any): boolean {
+    for (const item of perfil) {
+      //console.log(item);
+      if (item == "0") {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  verificaPerfilCliente(perfil: any): boolean {
+    for (const item of perfil) {
+      //console.log(item);
+      if (item == "1") {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  verificaPerfilTecnico(perfil: any): boolean {
+    for (const item of perfil) {
+      //console.log(item);
+      if (item == "2") {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  
 
   validaCampos(): boolean {
     return this.nome.valid && this.cpf.valid && this.email.valid && this.senha.valid;
