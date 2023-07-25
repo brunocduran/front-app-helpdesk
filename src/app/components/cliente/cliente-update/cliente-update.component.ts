@@ -2,24 +2,24 @@ import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Tecnico } from 'src/app/models/tecnico';
-import { TecnicoService } from 'src/app/services/tecnico.service';
+import { Cliente } from 'src/app/models/cliente';
+import { ClienteService } from 'src/app/services/cliente.service';
 
 @Component({
-  selector: 'app-tecnico-update',
-  templateUrl: './tecnico-update.component.html',
-  styleUrls: ['./tecnico-update.component.css']
+  selector: 'app-cliente-update',
+  templateUrl: './cliente-update.component.html',
+  styleUrls: ['./cliente-update.component.css']
 })
-export class TecnicoUpdateComponent {
+export class ClienteUpdateComponent {
 
   constructor(
-    private service: TecnicoService,
+    private service: ClienteService,
     private toast: ToastrService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
 
-  tecnico: Tecnico = {
+  cliente: Cliente = {
     id: '',
     nome: '',
     cpf: '',
@@ -37,25 +37,25 @@ export class TecnicoUpdateComponent {
   perfilTemp: any[] = [];
 
   ngOnInit(): void {
-    this.tecnico.id = this.route.snapshot.paramMap.get('id');
+    this.cliente.id = this.route.snapshot.paramMap.get('id');
     this.findById();
   }
 
   findById(): void {
-    this.service.findById(this.tecnico.id).subscribe(resposta => {
+    this.service.findById(this.cliente.id).subscribe(resposta => {
       //console.log(resposta.perfis);
       this.armazenaPerfil(resposta.perfis);
       resposta.perfis = [];
-      this.tecnico = resposta;
-      this.tecnico.perfis = this.perfilTemp;
-      //console.log(this.tecnico);
+      this.cliente = resposta;
+      this.cliente.perfis = this.perfilTemp;
+      //console.log(this.cliente);
     })
   }
 
   update(): void {
-    this.service.update(this.tecnico).subscribe(() => {
-      this.toast.success('Técnico atualizado com sucesso', 'Atualização');
-      this.router.navigate(['tecnicos'])
+    this.service.update(this.cliente).subscribe(() => {
+      this.toast.success('Cliente atualizado com sucesso', 'Atualização');
+      this.router.navigate(['clientes'])
     }, ex => {
       //console.log(ex);
       if (ex.error.errors) {
@@ -69,12 +69,12 @@ export class TecnicoUpdateComponent {
   }
 
   addPerfil(perfil: any): void {
-    if (this.tecnico.perfis.includes(perfil)) {
-      this.tecnico.perfis.splice(this.tecnico.perfis.indexOf(perfil), 1);
+    if (this.cliente.perfis.includes(perfil)) {
+      this.cliente.perfis.splice(this.cliente.perfis.indexOf(perfil), 1);
     } else {
-      this.tecnico.perfis.push(perfil);
+      this.cliente.perfis.push(perfil);
     }
-    //console.log(this.tecnico.perfis);
+    //console.log(this.cliente.perfis);
   }
 
   armazenaPerfil(perfil: any) {
