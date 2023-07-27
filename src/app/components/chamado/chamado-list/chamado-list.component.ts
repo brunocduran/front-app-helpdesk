@@ -16,7 +16,7 @@ export class ChamadoListComponent {
   ELEMENT_DATA: Chamado[] = []
   FILTERED_DATA: Chamado[] = []
 
-  displayedColumns: string[] = ['id', 'titulo', 'cliente', 'tecnico', 'dataAbertura', 'prioridade', 'status', 'edit', 'visibility'];
+  displayedColumns: string[] = ['id', 'titulo', 'cliente', 'tecnico', 'dataAbertura', 'status', 'prioridade', 'edit', 'visibility'];
   dataSource = new MatTableDataSource<Chamado>(this.ELEMENT_DATA);
 
   applyFilter(event: Event) {
